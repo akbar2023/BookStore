@@ -10,7 +10,15 @@ export class BooksService {
 
   constructor(private http : HttpClient) { }
 
-  search(search : string, startIndex : number = 0) {
-    return (this.http.get(this.api + 'volumes?q=' + search + '&maxResults=40&startIndex=' + startIndex));
-  }
+  search(title : string, author: string, isbn: string, startIndex : number = 0) {
+    let url = this.api + 'volumes?q=';
+    if(title)
+    url += 'intitle:'+title;
+    if(author)
+    url += ' inauthor:'+author;
+    if(isbn)
+      url += ' isbn:'+isbn;
+    return (this.http.get(url + '&maxResults=40&startIndex=' + startIndex));
+    }
+  
 }

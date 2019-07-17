@@ -8,6 +8,8 @@ import { BooksService } from '../services/books.service';
 })
 export class BooksComponent implements OnInit {
   searchQuery : string = '';
+  searchAuthor : string = '';
+  searchIsbn : string = '';
   searchResults = null;
 
   constructor(private bookService : BooksService) { 
@@ -17,7 +19,7 @@ export class BooksComponent implements OnInit {
   }
 
   search() {
-    this.bookService.search(this.searchQuery).subscribe((data) => {
+    this.bookService.search(this.searchQuery, this.searchAuthor, this.searchIsbn).subscribe((data) => {
       console.log(data);
       this.searchResults = data;
     }, (error) => {
@@ -26,7 +28,7 @@ export class BooksComponent implements OnInit {
   }
 
   showMore() {
-    this.bookService.search(this.searchQuery, this.searchResults.items.length).subscribe((data) => {
+    this.bookService.search(this.searchQuery, this.searchAuthor, this.searchIsbn, this.searchResults.items.length).subscribe((data) => {
       console.log(data);
       this.searchResults.items.push(...data.items);
     }, (error) => {
