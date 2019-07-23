@@ -1,0 +1,14 @@
+<div *ngIf="book; else nobook">
+    <ul>
+        <li>Titre : {{ book.volumeInfo.title }}</li>
+        <li>Sous-titre : {{ book.volumeInfo.subtitle }}</li>
+        <li>Auteur : {{ book.volumeInfo.authors }}</li>
+        <li>Genre : {{ book.volumeInfo.categories[0] }}</li>
+        <li>Prix : {{ book.saleInfo.listPrice.amount }} €</li>
+        <img [src] = "book.volumeInfo.imageLinks?.thumbnail">
+    </ul>
+    <div [innerHTML]="book.volumeInfo.description"></div>
+</div>
+<ng-template #nobook>
+    <p>Aucun livre trouvé.</p>
+</ng-template>
