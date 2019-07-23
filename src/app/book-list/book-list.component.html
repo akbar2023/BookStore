@@ -1,13 +1,29 @@
 
-<input [(ngModel)]="searchQuery" (keydown.enter)="search()" placeholder="Title"><br>
-<input [(ngModel)]="searchAuthor" (keydown.enter)="search()" placeholder="Author"><br>
-<input [(ngModel)]="searchIsbn" (keydown.enter)="search()" placeholder="ISBN"> <br>
-<button (click)="search()">GO !</button>
-<div *ngIf="searchResults !== null">
-    <div *ngFor="let book of searchResults.items">
-        <a [routerLink]="['/books', book.id]">{{ book.volumeInfo.title }}</a>
-        <em class="text-danger">By {{ book.volumeInfo.authors }}</em>
-    </div>
+<div class="form-group">
+    <input class="form-control" [(ngModel)]="searchQuery" (keydown.enter)="search()" placeholder="Title"><br>
+    <input class="form-control" [(ngModel)]="searchAuthor" (keydown.enter)="search()" placeholder="Author"><br>
+    <input class="form-control" [(ngModel)]="searchIsbn" (keydown.enter)="search()" placeholder="ISBN"><br>
+    <p><button class="btn btn-outline-info" (click)="search()">Search</button></p>
+</div>
 
-    <p (click)="showMore()">See more...</p>
+
+<div *ngIf="searchResults !== null">
+   
+        <div class="card mb-3" style="max-width: 540px" *ngFor="let book of searchResults.items">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img [src] = "book.volumeInfo.imageLinks?.thumbnail" class="card-img">
+            </div>
+            <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title text-">{{ book.volumeInfo.title }}</h3>
+                <p *ngIf="book.volumeInfo.authors"><em class="card-text text-danger">By {{ book.volumeInfo.authors }}</em></p>
+                <p *ngIf="book.saleInfo.listPrice">Prix : {{ book.saleInfo.listPrice.amount }} €</p>
+                <a [routerLink]="['/books', book.id]" class="btn btn-success">Détails</a>
+            </div>
+            </div>
+        </div>
+        </div>
+
+    <button class="btn btn-outline-info" (click)="showMore()">See more...</button>
 </div>

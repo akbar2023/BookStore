@@ -14,6 +14,8 @@ export class BookDetailComponent implements OnInit {
   constructor(private route : ActivatedRoute, private booksService : BooksService) { }
 
   ngOnInit() {
+    console.log("gghghg");
+    
     this.route.params.subscribe((params : Params) => {
       this.booksService.select(params.id).subscribe((data : any) => {
         this.book = data;
