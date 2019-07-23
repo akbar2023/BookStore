@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { BooksService } from '../services/books.service';
 
 @Component({
-  selector: 'app-books',
-  templateUrl: './books.component.html',
-  styleUrls: ['./books.component.scss']
+  selector: 'app-book-list',
+  templateUrl: './book-list.component.html',
+  styleUrls: ['./book-list.component.scss']
 })
-export class BooksComponent implements OnInit {
+export class BookListComponent implements OnInit {
+
   searchQuery : string = '';
   searchAuthor : string = '';
   searchIsbn : string = '';
@@ -20,7 +21,7 @@ export class BooksComponent implements OnInit {
 
   search() {
     this.bookService.search(this.searchQuery, this.searchAuthor, this.searchIsbn).subscribe((data) => {
-      console.log(data);
+      console.log(data.items);
       this.searchResults = data;
     }, (error) => {
       console.log(error);
@@ -30,7 +31,7 @@ export class BooksComponent implements OnInit {
   showMore() {
     this.bookService.search(this.searchQuery, this.searchAuthor, this.searchIsbn, this.searchResults.items.length).subscribe((data) => {
       console.log(data);
-      // this.searchResults.items.push(...data.items);
+      this.searchResults.items.push(...data.items);
     }, (error) => {
       console.log(error);
     });

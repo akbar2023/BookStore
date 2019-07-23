@@ -19,7 +19,11 @@ export class BooksService {
     url += ' inauthor:'+author;
     if(isbn)
       url += ' isbn:'+isbn;
-    return (this.http.get(url + '&maxResults=10&startIndex=' + startIndex));
-    }
+    return (this.http.get<any>(url + '&maxResults=40&startIndex=' + startIndex));
+  }
+
+  select(id : string) : Observable<any> {
+    return(this.http.get<any>(this.api + 'volumes/' + id));
+  }
   
 }
