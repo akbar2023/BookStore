@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class BooksService {
 
   constructor(private http : HttpClient) { }
 
-  search(title : string, author: string, isbn: string, startIndex : number = 0) {
+  search(title : string, author: string, isbn: string, startIndex : number = 0): Observable<any>  {
     let url = this.api + 'volumes?q=';
     if(title)
     url += 'intitle:'+title;
@@ -18,7 +19,7 @@ export class BooksService {
     url += ' inauthor:'+author;
     if(isbn)
       url += ' isbn:'+isbn;
-    return (this.http.get(url + '&maxResults=40&startIndex=' + startIndex));
+    return (this.http.get(url + '&maxResults=10&startIndex=' + startIndex));
     }
   
 }
