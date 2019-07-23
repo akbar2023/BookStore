@@ -1,13 +1,15 @@
 <div *ngIf="book; else nobook">
-    <ul>
-        <li>Titre : {{ book.volumeInfo.title }}</li>
-        <li>Sous-titre : {{ book.volumeInfo.subtitle }}</li>
-        <li>Auteur : {{ book.volumeInfo.authors }}</li>
-        <li>Genre : {{ book.volumeInfo.categories[0] }}</li>
-        <li>Prix : {{ book.saleInfo.listPrice.amount }} €</li>
+    <div>
+        <h3>{{ book.volumeInfo.title }}</h3>
+        <h5>{{ book.volumeInfo?.subtitle }}</h5>
+        <p><em>By : {{ book.volumeInfo.authors }}</em></p>
+        <p *ngIf="book.volumeInfo.categories">Genre : {{ book.volumeInfo.categories }}</p>
+        <p *ngIf="book.volumeInfo.publisher">Editeur : {{ book.volumeInfo.publisher }}</p> 
+        <p *ngIf="book.volumeInfo.industryIdentifiers[1].identifier">ISBN : {{ book.volumeInfo.industryIdentifiers[1].identifier }}</p>       
         <img [src] = "book.volumeInfo.imageLinks?.thumbnail">
-    </ul>
+    </div>
     <div [innerHTML]="book.volumeInfo.description"></div>
+    <p *ngIf="book.saleInfo.listPrice">Prix : {{ book.saleInfo.listPrice.amount }} €</p>
 </div>
 <ng-template #nobook>
     <p>Aucun livre trouvé.</p>
