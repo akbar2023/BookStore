@@ -20,7 +20,7 @@ export class BookDetailComponent implements OnInit {
       
           
         this.book = data
-        console.log(this.book)
+        console.log(data)
       });
     });
   }

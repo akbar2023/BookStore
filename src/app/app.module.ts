@@ -13,6 +13,7 @@ import {BookListComponent} from './book-list/book-list.component';
 import {BookDetailComponent} from './book-detail/book-detail.component';
 import {HTTPErrorComponent} from './httperror/httperror.component';
 import { CartComponent } from './cart/cart.component';
+import { RatingModule } from 'ng-starrating';
 
 
 
@@ -31,6 +32,7 @@ import { CartComponent } from './cart/cart.component';
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
+    RatingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
