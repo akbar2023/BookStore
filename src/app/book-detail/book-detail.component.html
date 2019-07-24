@@ -1,15 +1,55 @@
 <div *ngIf="book; else nobook">
-    <div>
+    <!-- <div>
         <h3>{{ book.volumeInfo.title }}</h3>
         <h5>{{ book.volumeInfo?.subtitle }}</h5>
-        <p><em>By : {{ book.volumeInfo.authors }}</em></p>
+        <p><em>Par : {{ book.volumeInfo.authors }}</em></p>
         <p *ngIf="book.volumeInfo.categories">Genre : {{ book.volumeInfo.categories }}</p>
         <p *ngIf="book.volumeInfo.publisher">Editeur : {{ book.volumeInfo.publisher }}</p> 
+        <p *ngIf="book.volumeInfo.language">Langue : {{ book.volumeInfo.language }}</p> 
+        <p *ngIf="book.volumeInfo.averageRating">Note : {{ book.volumeInfo.averageRating }}/5</p> 
+        <p *ngIf="book.volumeInfo.pageCount">Nombre de pages : {{ book.volumeInfo.pageCount }}</p> 
+        <p *ngIf="book.saleInfo.isEbook">Disponible en e-book </p> 
         <p *ngIf="book.volumeInfo.industryIdentifiers[1].identifier">ISBN : {{ book.volumeInfo.industryIdentifiers[1].identifier }}</p>       
         <img [src] = "book.volumeInfo.imageLinks?.thumbnail">
     </div>
     <div [innerHTML]="book.volumeInfo.description"></div>
-    <p *ngIf="book.saleInfo.listPrice">Prix : {{ book.saleInfo.listPrice.amount }} €</p>
+    <p *ngIf="book.saleInfo.listPrice">Prix : {{ book.saleInfo.listPrice.amount }} €</p> -->
+
+    <!-- Start list -->
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img [src] = "book.volumeInfo.imageLinks?.thumbnail" class="card-img" alt="book thumbnail">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+                <!-- Titre -->
+                <h5 class="card-title">{{ book.volumeInfo.title }}</h5>
+                <!-- Auteur -->
+                <p class="card-text" *ngIf="book.volumeInfo.authors"><small class="text-muted">Par : {{ book.volumeInfo.authors }}</small></p>
+
+                <!-- Infos -->
+                <p class="card-text infos" *ngIf="book.volumeInfo.categories">Genre : {{ book.volumeInfo.categories }}</p>
+                <p class="card-text infos" *ngIf="book.volumeInfo.publisher">Editeur : {{ book.volumeInfo.publisher }}</p> 
+                <p class="card-text infos" *ngIf="book.volumeInfo.language">Langue : {{ book.volumeInfo.language }}</p> 
+                <p class="card-text infos" *ngIf="book.volumeInfo.averageRating">Note : {{ book.volumeInfo.averageRating }}/5</p> 
+                <p class="card-text infos" *ngIf="book.volumeInfo.pageCount">Nombre de pages : {{ book.volumeInfo.pageCount }}</p> 
+                <p class="card-text infos" *ngIf="book.saleInfo.isEbook" >Disponible en e-book </p> 
+                <p class="card-text infos" *ngIf="book.volumeInfo.industryIdentifiers[1].identifier">ISBN : {{ book.volumeInfo.industryIdentifiers[1].identifier }}</p>
+                <p class="card-text text-primary" *ngIf="book.saleInfo.listPrice">Prix : {{ book.saleInfo.listPrice.amount }} €</p>
+                <button type="button" class="btn btn-info text-center">Ajouter au panier</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="card-body" *ngIf="book.volumeInfo?.description">
+          <h5>Résumé : </h5>
+            <!-- Description -->
+            <p class="card-text" [innerHTML]="book.volumeInfo.description">Résumé :</p>
+        </div>
+    <!-- End list -->
+
 </div>
 <ng-template #nobook>
     <p>Aucun livre trouvé.</p>
