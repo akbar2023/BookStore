@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {BookListComponent} from './book-list/book-list.component';
 import {BookDetailComponent} from './book-detail/book-detail.component';
 import {HTTPErrorComponent} from './httperror/httperror.component';
+import { CartComponent } from './cart/cart.component';
+
 
 
 @NgModule({
@@ -19,14 +21,16 @@ import {HTTPErrorComponent} from './httperror/httperror.component';
     AppComponent,
     BookListComponent,
     BookDetailComponent,
-    HTTPErrorComponent
+    HTTPErrorComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
