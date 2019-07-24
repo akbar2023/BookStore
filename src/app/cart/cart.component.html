@@ -2,5 +2,5 @@
 
 <div class="cart-item" *ngFor="let item of items">
         <span>{{ item.volumeInfo.title }}  | </span>
-        <span>{{ item.saleInfo.listPrice.amount }} €</span>
+        <span>{{ item.saleInfo.listPrice.amount || "10" }} €</span>
 </div>
