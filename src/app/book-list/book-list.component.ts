@@ -12,6 +12,7 @@ export class BookListComponent implements OnInit {
   searchAuthor : string = '';
   searchIsbn : string = '';
   searchResults = null;
+  searchAverageRating : number;
 
   constructor(private bookService : BooksService) { 
    }
@@ -20,7 +21,7 @@ export class BookListComponent implements OnInit {
   }
 
   search() {
-    this.bookService.search(this.searchQuery, this.searchAuthor, this.searchIsbn).subscribe((data) => {
+    this.bookService.search(this.searchQuery, this.searchAuthor, this.searchIsbn, this.searchAverageRating).subscribe((data) => {
       console.log(data.items);
       this.searchResults = data;
     }, (error) => {

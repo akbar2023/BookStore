@@ -11,7 +11,7 @@ export class BooksService {
 
   constructor(private http : HttpClient) { }
 
-  search(title : string, author: string, isbn: string, startIndex : number = 0): Observable<any>  {
+  search(title : string, author: string, isbn: string, averageRating : number, startIndex : number = 0): Observable<any>  {
     let url = this.api + 'volumes?q=';
     if(title)
     url += 'intitle:'+title;
@@ -19,7 +19,9 @@ export class BooksService {
     url += ' inauthor:'+author;
     if(isbn)
       url += ' isbn:'+isbn;
-    return (this.http.get<any>(url + '&maxResults=40&startIndex=' + startIndex));
+    if(averageRating)
+      url += 'averageRating'+averageRating;
+    return (this.http.get<any>(url + '&maxResults=10&startIndex=' + startIndex));
   }
 
   select(id : string) : Observable<any> {
