@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class BooksService {
 
-  private api: string = "https://www.googleapis.com/books/v1/";
+  private api = 'https://www.googleapis.com/books/v1/';
 
   constructor(private http: HttpClient) { }
 

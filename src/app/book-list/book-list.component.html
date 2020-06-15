@@ -1,4 +1,3 @@
-
 <div class="form-group">
     <input class="form-control" [(ngModel)]="searchQuery" (keydown.enter)="search()" placeholder="Title"><br>
     <input class="form-control" [(ngModel)]="searchAuthor" (keydown.enter)="search()" placeholder="Author"><br>
@@ -20,7 +19,7 @@
             <div class="card-body">
                 <h3 class="card-title text-">{{ book.volumeInfo.title }}</h3>
                 <p *ngIf="book.volumeInfo.authors"><em class="card-text text-danger">By {{ book.volumeInfo.authors }}</em></p>
-                <star-rating value={{book.volumeInfo.averageRating}} checkedcolor="orange" uncheckedcolor="grey" size="24px"    readonly="true" (rate)="onRate($event)"></star-rating>                
+                <!-- <star-rating value={{book.volumeInfo.averageRating}} checkedcolor="orange" uncheckedcolor="grey" size="24px"    readonly="true" (rate)="onRate($event)"></star-rating>                 -->
                 <p *ngIf="book.saleInfo.listPrice">Prix : {{ book.saleInfo.listPrice.amount || "10" }} €</p>
                 <a [routerLink]="['/books', book.id]" class="btn btn-success">Détails</a>
             </div>

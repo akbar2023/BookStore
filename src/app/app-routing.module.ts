@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'books/:id', component: BookDetailComponent },
   { path: 'cart', component: CartComponent},
   { path: '', redirectTo: '/books', pathMatch: 'full' },
-  { path: '**', component: HTTPErrorComponent, data: {code:404, message: 'Not Found'} }
+  { path: '**', component: HTTPErrorComponent, data: {code: 404, message: 'Not Found'} }
 ];
 
 @NgModule({
