@@ -8,14 +8,14 @@ import { BooksService } from '../services/books.service';
 })
 export class BookListComponent implements OnInit {
 
-  searchQuery : string = '';
-  searchAuthor : string = '';
-  searchIsbn : string = '';
+  searchQuery = '';
+  searchAuthor = '';
+  searchIsbn = '';
   searchResults = null;
-  searchAverageRating : number;
+  searchAverageRating: number;
 
-  constructor(private bookService : BooksService) { 
-   }
+  constructor(private bookService: BooksService) {
+  }
 
   ngOnInit() {
   }
@@ -30,12 +30,12 @@ export class BookListComponent implements OnInit {
   }
 
   showMore() {
-    this.bookService.search(this.searchQuery, this.searchAuthor, this.searchIsbn, this.searchResults.items.length).subscribe((data) => {
-      console.log(data);
-      this.searchResults.items.push(...data.items);
-    }, (error) => {
-      console.log(error);
-    });
+    this.bookService.search(this.searchQuery, this.searchAuthor, null, null, this.searchResults.items.length).subscribe((data) => {
+        console.log(data);
+        this.searchResults.items.push(...data.items);
+      }, (error) => {
+        console.log(error);
+      });
   }
 
 }

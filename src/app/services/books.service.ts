@@ -7,25 +7,29 @@ import { Observable } from 'rxjs';
 })
 export class BooksService {
 
-  private api : string = "https://www.googleapis.com/books/v1/";
+  private api: string = "https://www.googleapis.com/books/v1/";
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  search(title : string, author: string, isbn: string, averageRating : number, startIndex : number = 0): Observable<any>  {
+  search(title: string, author: string, isbn: string, averageRating: number, startIndex: number = 0): Observable<any> {
     let url = this.api + 'volumes?q=';
-    if(title)
-    url += 'intitle:'+title;
-    if(author)
-    url += ' inauthor:'+author;
-    if(isbn)
-      url += ' isbn:'+isbn;
-    if(averageRating)
-      url += 'averageRating'+averageRating;
+    if (title) { 
+      url += 'intitle:' + title;
+    }
+    if (author) {
+      url += ' inauthor:' + author;
+    }
+    if (isbn) {
+      url += ' isbn:' + isbn;
+    }
+    if (averageRating) {
+      url += 'averageRating' + averageRating;
+    }
     return (this.http.get<any>(url + '&maxResults=10&startIndex=' + startIndex));
   }
 
-  select(id : string) : Observable<any> {
-    return(this.http.get<any>(this.api + 'volumes/' + id));
+  select(id: string): Observable<any> {
+    return (this.http.get<any>(this.api + 'volumes/' + id));
   }
-  
+
 }
