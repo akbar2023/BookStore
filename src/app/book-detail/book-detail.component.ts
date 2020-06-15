@@ -9,18 +9,16 @@ import { CartService } from '../services/cart.service';
 })
 export class BookDetailComponent implements OnInit {
 
-  public book : any = null;
+  public book: any = null;
 
-  constructor(private route : ActivatedRoute, private booksService : BooksService, private cartService: CartService) { }
-  
+  constructor(private route: ActivatedRoute, private booksService: BooksService, private cartService: CartService) { }
 
-  ngOnInit() {    
-    this.route.params.subscribe((params : Params) => {
-      this.booksService.select(params.id).subscribe((data : any) => {
-      
-          
-        this.book = data
-        console.log(data)
+
+  ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      this.booksService.select(params.id).subscribe((data: any) => {
+        this.book = data;
+        console.log(data);
       });
     });
   }
